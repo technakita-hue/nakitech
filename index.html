@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAKITECH - Computer Home Service</title>
+     <link rel="icon" href="img/NakiTech favicon.png" type="image/png">
+    <style>
+        :root {
+            --primary-blue: #1E2248; /* Dark Blue from Logo */
+            --accent-cyan: #26C6DA;  /* Cyan from Logo */
+            --brand-yellow: #FFB74D; /* Orange/Yellow from Banner */
+            --text-dark: #333;
+            --text-light: #fff;
+            --bg-light: #f4f7f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        /* --- New Navigation Links CSS --- */
+        .nav-links {
+            display: none; /* Hidden on small mobile screens */
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin: 0 15px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Show links on screens wider than 850px */
+        @media (min-width: 850px) {
+            .nav-links {
+                display: block;
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo span {
+            color: var(--accent-cyan);
+        }
+
+        .contact-btn {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .contact-btn:hover {
+            background-color: var(--accent-cyan);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, #ffca28 100%);
+            padding: 60px 0;
+            text-align: center;
+            color: var(--primary-blue);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 20px auto;
+        }
+
+        .hero-banner-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            margin-top: 20px;
+            border: 4px solid white;
+        }
+
+        /* --- Burmese Message Section --- */
+        .message-section {
+            background-color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 3px solid var(--accent-cyan);
+        }
+
+        .burmese-text {
+            font-family: 'Pyidaungsu', 'Myanmar3', sans-serif;
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- Services & Pricing --- */
+        .pricing-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-blue);
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--accent-cyan);
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-cyan);
+            transition: transform 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+        }
+
+        .service-price {
+            font-weight: 700;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        /* --- Transport Info Box --- */
+        .transport-box {
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .transport-box h3 {
+            margin-bottom: 30px;
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
+        }
+
+        .zone-container {
+            text-align: left;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .zone-container:last-child {
+            border-bottom: none;
+        }
+
+        .zone-title {
+            color: var(--brand-yellow);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .zone-text {
+            color: #eee;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .special-offer {
+            margin-top: 25px;
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed var(--accent-cyan);
+        }
+
+        /* --- AI Assistant Section --- */
+        .ai-section {
+            background: linear-gradient(135deg, #fff 0%, #f0f4ff 100%);
+            padding: 50px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .ai-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 2px solid var(--accent-cyan);
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-box::before {
+            content: "✨ Powered by Gemini";
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent-cyan);
+            color: white;
+            font-size: 0.8rem;
+            padding: 5px 15px;
+            border-bottom-left-radius: 10px;
+            font-weight: bold;
+        }
+
+        .ai-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            min-height: 80px;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        .ai-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        .ai-btn {
+            background: linear-gradient(90deg, var(--primary-blue) 0%, #303f9f 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
+
+        .ai-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .ai-result {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e8eaf6;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-blue);
+            display: none;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .ai-loading {
+            display: none;
+            color: var(--primary-blue);
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        /* --- B2B Section (New) --- */
+        .b2b-section {
+            padding: 60px 0;
+            background-color: var(--bg-light);
+        }
+
+        .b2b-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .b2b-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            border-top: 5px solid transparent;
+        }
+
+        .b2b-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Esports Specific */
+        .esports-card { border-top-color: #FF5252; }
+        .esports-header { background: #FF5252; color: white; padding: 20px; text-align: center; }
+        
+        /* Office Specific */
+        .office-card { border-top-color: var(--primary-blue); }
+        .office-header { background: var(--primary-blue); color: white; padding: 20px; text-align: center; }
+
+        .b2b-body {
+            padding: 25px;
+            flex-grow: 1;
+        }
+
+        .b2b-price {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .b2b-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .b2b-features li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .b2b-features li::before {
+            content: '✔';
+            color: var(--accent-cyan);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* --- Booking Form --- */
+        .booking-section {
+            background-color: white;
+            padding: 60px 0;
+            border-top: 1px solid #eee;
+        }
+
+        .booking-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #ddd;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-cyan);
+        }
+        
+        .fb-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #1877F2;
+            font-weight: 600;
+            text-decoration: none;
+            border: 2px solid #1877F2;
+            padding: 8px 20px;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .fb-btn:hover {
+            background-color: #1877F2;
+            color: white;
+        }
+
+        #fee-result {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e3f2fd;
+            border: 1px solid #90caf9;
+            color: #0d47a1;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none;
+            text-align: center;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #111;
+            color: #aaa;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .phone-big {
+            font-size: 1.5rem;
+            color: var(--brand-yellow);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+        }
+
+        /* --- Mobile Specific --- */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .nav-wrapper { height: 60px; }
+            .logo { font-size: 1.2rem; }
+            .contact-btn { padding: 8px 15px; font-size: 0.9rem; }
+            .booking-form { padding: 20px; }
+            .transport-box { padding: 20px; text-align: left;}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">
+                <img src="img/NakiTech Logo.png" alt="N" onerror="this.style.display='none'">
+                <div>NAKI<span>TECH</span></div>
+            </div>
+            
+            <!-- Added Navigation Section -->
+            <nav class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#ai-assist">AI Diagnostic</a>
+                <a href="#b2b">B2B Plans</a>
+                <a href="#booking">Book Now</a>
+            </nav>
+
+            <a href="tel:09775828769" class="contact-btn">Call Now</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Door to Door <br>Computer Home Service</h1>
+            <p>The best solution for those who have difficulty going to the shop.</p>
+            <p style="font-weight: 600;">In Yangon</p>
+            <img src="img/PC Service Cover [Recovered] (1).png" alt="Computer Service Cover" class="hero-banner-img">
+        </div>
+    </section>
+
+    <!-- Burmese Message -->
+    <section class="message-section">
+        <div class="container">
+            <p class="burmese-text">
+                ✅ PC ကို cleaning လုပ်ချင်လို့ပဲဖြစ်ဖြစ်၊ windows တင်ချင်လို့ပဲဖြစ်ဖြစ်၊ Hardware error စစ်ချင်လို့ပဲဖြစ်ဖြစ်၊ engineering software and game များ installလုပ် ချင်လုပ်ပဲဖြစ်ဖြစ် Nakita facebook page or phone သို့ တိုက်ရိုက်ဆက်သွယ်မေးမြန်းနိုင်ပါတယ်ခင်ဗျ။
+✅Home service များကို အဓိကထားဆောင်ရွက်ပးနေသည့် အတွက် PC ဆိုင်တွင် သွားပြဖို့ အခက်အခဲ ရှိနေသူများအတွက် ပိုသင့်တော်ပါတယ်ခင်ဗျ။
+        </div>
+    </section>
+
+    <!-- Services & Pricing -->
+    <section class="pricing-section" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Service Menu</h2>
+                <p>Transparent pricing for all your PC needs</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card"><span class="service-name">Hardware (HW) Check</span><span class="service-price">30,000 Ks</span></div>
+                <div class="service-card"><span class="service-name">PC Cleaning</span><span class="service-price">30,000 Ks</span></div>
+                <div class="service-card"><span class="service-name">Windows Installation</span><span class="service-price">20,000 Ks</span></div>
+                <div class="service-card"><span class="service-name">Engineering Software</span><span class="service-price">10,000 Ks</span></div>
+                <div class="service-card"><span class="service-name">Game Installation</span><span class="service-price">8,000 Ks</span></div>
+                <div class="service-card"><span class="service-name">Thermal Paste</span><span class="service-price">5,000 Ks</span></div>
+                <div class="service-card"><span class="service-name">Adobe Software</span><span class="service-price">1,000 Ks</span></div>
+            </div>
+
+            <!-- Detailed Transport Fees -->
+            <div class="transport-box">
+                <h3>Transportation Fees (Yangon Area)</h3>
+                
+                <div class="zone-container">
+                    <div class="zone-title">📍 Zone A (5,000 Ks)</div>
+                    <div class="zone-text burmese-text">
+                        စမ်းချောင်း၊ ဗဟန်း၊ ကမာရွတ်၊ လှိုင်၊ ရန်ကင်း၊ တာမွေ၊ မင်္ဂလာတောင်ညွန့်။
+                    </div>
+                </div>
+
+                <div class="zone-container">
+                    <div class="zone-title">📍 Zone B (10,000 Ks)</div>
+                    <div class="zone-text burmese-text">
+                        မြို့ထဲ ၆ မြို့နယ်၊ အလုံ၊ ကြည့်မြင်တိုင်၊ မရမ်းကုန်း၊ တောင်ဥက္ကလာ၊ သင်္ဃန်းကျွန်း။
+                    </div>
+                </div>
+
+                <div class="zone-container">
+                    <div class="zone-title">📍 Zone C (15,000 Ks)</div>
+                    <div class="zone-text burmese-text">
+                        အင်းစိန်၊ မြောက်ဥက္ကလာ၊ သာကေတ၊ ဒေါပုံ၊ တောင်ဒဂုံ။
+                    </div>
+                </div>
+
+                <div class="zone-container">
+                    <div class="zone-title">📍 Zone D (20,000 Ks)</div>
+                    <div class="zone-text burmese-text">
+                        မြောက်ဒဂုံ၊ အရှေ့ဒဂုံ၊ ဒဂုံဆိပ်ကမ်း၊ လှိုင်သာယာ၊ ရွှေပြည်သာ၊ မင်္ဂလာဒုံ။
+                    </div>
+                </div>
+
+                <div class="special-offer">
+                    <div class="burmese-text" style="font-weight: bold; color: var(--brand-yellow);">
+                        💡 Special Offer: ကွန်ပျူတာ (၃) လုံးနှင့်အထက် ဝန်ဆောင်မှုယူပါက လမ်းစရိတ် Free ဖြစ်ပါတယ်ခင်ဗျာ။
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- AI Diagnostic Section -->
+    <!-- AI Diagnostic Section (Powered by ChatGPT) -->
+
+    <!-- B2B Maintenance Section (NEW) -->
+    <section class="b2b-section" id="b2b">
+        <div class="container">
+            <div class="section-title">
+                <h2>B2B Maintenance Packages</h2>
+                <p>Monthly recurring maintenance for Game Stores, Internet Cafes & Offices.</p>
+            </div>
+
+            <div class="b2b-grid">
+                <!-- Esports Package -->
+                <div class="b2b-card esports-card">
+                    <div class="esports-header">
+                        <h3 style="margin:0;">🎮 Esports Ready</h3>
+                        <p style="margin:0; font-size:0.9rem; opacity:0.9;">For Game Stores & Cafes</p>
+                    </div>
+                    <div class="b2b-body">
+                        <div class="b2b-price">
+                            From 20,000 Ks <span style="font-size:0.9rem; font-weight:normal;">/ PC / Month</span>
+                        </div>
+                        <ul class="b2b-features">
+                            <li><strong>Focus:</strong> Max Cooling & FPS Stability</li>
+                            <li>Monthly Full Air-Blow Cleaning (Case, Fans, GPU)</li>
+                            <li>Rolling Thermal Paste Schedule (Fresh paste every 5 mos)</li>
+                            <li>Game Patch Assistance & Driver Updates</li>
+                            <li><strong>Unlimited Free Emergency Call-outs</strong></li>
+                            <li><strong>Zero Transport Fees</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Office Package -->
+                <div class="b2b-card office-card">
+                    <div class="office-header">
+                        <h3 style="margin:0;">🏢 Office Productivity</h3>
+                        <p style="margin:0; font-size:0.9rem; opacity:0.9;">For Businesses & SMEs</p>
+                    </div>
+                    <div class="b2b-body">
+                        <div class="b2b-price">
+                            25,000 Ks <span style="font-size:0.9rem; font-weight:normal;">/ PC / Month</span>
+                        </div>
+                        <ul class="b2b-features">
+                            <li><strong>Focus:</strong> Data Safety & Virus Protection</li>
+                            <li>System Health Check (Updates, Antivirus, Junk Files)</li>
+                            <li>Physical Cleaning (Exterior/Interior) every 2 months</li>
+                            <li>Printer Sharing & WiFi Troubleshooting</li>
+                            <li>Backup Verification</li>
+                            <li><strong>Zero Transport Fees</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="text-align:center; margin-top:20px; font-style:italic; color:#666;">* Minimum contract: 3 Months and at least 3PCS. Prices vary by volume.</p>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="booking-section" id="booking">
+        <div class="container">
+            <div class="section-title">
+                <h2>Book an Appointment</h2>
+                <p>Fill out the form below to receive an email, or contact us directly on Viber.</p>
+            </div>
+            
+            <!-- 
+               IMPORTANT: 
+               1. Go to https://formspree.io/
+               2. Create a new form
+               3. Replace "YOUR_FORMSPREE_ID" in the action="" below with your unique URL.
+            -->
+            <form class="booking-form" action="https://formspree.io/f/myzrlyel" method="POST">
+                <div class="form-group">
+                    <label class="form-label" for="name">Your Name</label>
+                    <input type="text" id="name" name="name" class="form-input" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="form-input" required placeholder="09xxxxxxxxx">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="location">Your Location (Township)</label>
+                    <select id="location" name="location" class="form-select" required onchange="calculateFee()">
+                        <option value="">Select your township...</option>
+                        <!-- Zone A -->
+                        <option value="5000">Sanchaung</option>
+                        <option value="5000">Bahan</option>
+                        <option value="5000">Kamayut</option>
+                        <option value="5000">Hlaing</option>
+                        <option value="5000">Yankin</option>
+                        <option value="5000">Tamwe</option>
+                        <option value="5000">Mingala Taungnyunt</option>
+                        <!-- Zone B -->
+                        <option value="10000">Downtown (6 Townships)</option>
+                        <option value="10000">Ahlone</option>
+                        <option value="10000">Kyimyindaing</option>
+                        <option value="10000">Mayangone</option>
+                        <option value="10000">South Okkalapa</option>
+                        <option value="10000">Thingangyun</option>
+                        <!-- Zone C -->
+                        <option value="15000">Insein</option>
+                        <option value="15000">North Okkalapa</option>
+                        <option value="15000">Thaketa</option>
+                        <option value="15000">Dawbon</option>
+                        <option value="15000">South Dagon</option>
+                        <!-- Zone D -->
+                        <option value="20000">North Dagon</option>
+                        <option value="20000">East Dagon</option>
+                        <option value="20000">Dagon Seikkan</option>
+                        <option value="20000">Hlaing Tharyar</option>
+                        <option value="20000">Shwepyitha</option>
+                        <option value="20000">Mingaladon</option>
+                    </select>
+                    <!-- Auto-calculated fee result -->
+                    <div id="fee-result">Estimated Transport Fee: <span id="fee-amount">0</span> Ks</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="service">Select Service</label>
+                    <select id="service" name="service" class="form-select" required>
+                        <option value="">Choose a service...</option>
+                        <option value="hw-check">Hardware (HW) Check</option>
+                        <option value="cleaning">PC Cleaning</option>
+                        <option value="windows">Windows Installation</option>
+                        <option value="engineering">Engineering Software</option>
+                        <option value="game">Game Installation</option>
+                        <option value="thermal">Thermal Paste</option>
+                        <option value="adobe">Adobe Software</option>
+                        <option value="b2b-esports">B2B: Esports Package Quote</option>
+                        <option value="b2b-office">B2B: Office Package Quote</option>
+                        <option value="other">Other / Multiple</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="message">Additional Message (Optional)</label>
+                    <textarea id="message" name="message" class="form-textarea" placeholder="Describe your PC issue..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Book via Email</button>
+                
+                <div style="text-align: center; margin-top: 15px; font-weight: bold; color: #888;">OR</div>
+                
+                <!-- Viber Button -->
+                <a href="viber://chat?number=959775828769" class="submit-btn" style="background-color: #7360f2; text-align: center; display: block; margin-top: 15px; text-decoration: none;">
+                    Book via Viber (Instant)
+                </a>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px;">
+                <img src="img/NakiTech Logo.png" alt="Logo" style="height: 40px; background: white; padding: 2px; border-radius:100px;" onerror="this.style.display='none'">
+                <span class="footer-logo" style="margin-bottom: 0;">NAKI<span style="color:var(--accent-cyan)">TECH</span></span>
+            </div>
+            <p class="burmese-text" style="color: #888; margin-bottom: 20px; font-size: 0.9rem;">
+                ယုံကြည်စွာ Service အပ်နှံပေးကြတဲ့ Customer တစ်ယောက်ချင်းစီကိုအထူးကျေးဇူးတင်ရှိပါတယ်။
+            </p>
+            
+            <a href="tel:09775828769" class="phone-big">09 775828769</a>
+            
+            <!-- Facebook Button -->
+            <a href="https://www.facebook.com/profile.php?id=61579308366806" target="_blank" class="fb-btn">Find us on Facebook</a>
+
+            <p>&copy; 2025 NakiTech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function calculateFee() {
+            var select = document.getElementById("location");
+            var resultBox = document.getElementById("fee-result");
+            var amountSpan = document.getElementById("fee-amount");
+            
+            var fee = select.value;
+            
+            if (fee) {
+                resultBox.style.display = "block";
+                amountSpan.innerText = parseInt(fee).toLocaleString();
+            } else {
+                resultBox.style.display = "none";
+            }
+        }
+
+        // Gemini AI Integration
+      
+    </script>
+</body>
+</html>
